@@ -22,12 +22,10 @@
     <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
             <!-- Logo -->
-            <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
-                    <i data-lucide="graduation-cap" class="w-4 h-4 text-white"></i>
-                </div>
+            <a href="{{ route('student.dashboard') }}" class="flex items-center gap-2.5">
+                <img src="{{ asset('images/logo.png') }}" alt="STEM Academy Logo" class="w-8 h-8 object-contain">
                 <span class="text-white font-bold text-sm hidden sm:block">STEM Academy</span>
-            </div>
+            </a>
 
             <!-- Desktop nav -->
             <nav class="hidden md:flex items-center gap-1">

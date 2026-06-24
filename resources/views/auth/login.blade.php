@@ -27,10 +27,7 @@
         <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-8">
             <!-- Logo -->
             <div class="flex flex-col items-center gap-3 mb-8">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-500/25">
-                    <!-- Graduation Cap Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-                </div>
+                <img src="{{ asset('images/logo.png') }}" alt="STEM Academy Logo" class="w-24 h-24 object-contain">
                 <div class="text-center">
                     <h1 class="text-xl font-bold text-white">STEM Academy</h1>
                     <p class="text-slate-400 text-sm mt-0.5">Sign in to your portal</p>

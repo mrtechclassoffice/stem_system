@@ -21,15 +21,13 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-800 transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:flex lg:flex-col">
         <!-- Logo -->
-        <div class="flex items-center gap-3 px-6 py-5 border-b border-slate-800">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center">
-                <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
-            </div>
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-6 py-5 border-b border-slate-800">
+            <img src="{{ asset('images/logo.png') }}" alt="STEM Academy Logo" class="w-9 h-9 object-contain">
             <div>
                 <p class="text-white font-bold text-sm">STEM Academy</p>
                 <p class="text-slate-400 text-xs">Admin Portal</p>
             </div>
-        </div>
+        </a>
 
         <!-- Nav -->
         <nav class="flex-1 px-3 py-4 space-y-1">
