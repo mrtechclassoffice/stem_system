@@ -7,6 +7,29 @@
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <script>
+        // Check theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -14,9 +37,55 @@
         h1, h2, h3 {
             font-family: 'Outfit', sans-serif;
         }
+        /* Light mode overrides */
+        html:not(.dark) body {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) .bg-slate-900 {
+            background-color: #ffffff !important;
+        }
+        html:not(.dark) .bg-slate-950 {
+            background-color: #f1f5f9 !important;
+        }
+        html:not(.dark) .border-slate-800 {
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) .border-slate-800\/80 {
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) .text-white {
+            color: #0f172a !important;
+        }
+        html:not(.dark) .text-slate-100 {
+            color: #1e293b !important;
+        }
+        html:not(.dark) .text-slate-200 {
+            color: #334155 !important;
+        }
+        html:not(.dark) .text-slate-300 {
+            color: #475569 !important;
+        }
+        html:not(.dark) .text-slate-400 {
+            color: #64748b !important;
+        }
+        html:not(.dark) .hover\:bg-slate-800:hover {
+            background-color: #f1f5f9 !important;
+        }
+        html:not(.dark) .hover\:border-slate-700:hover {
+            border-color: #cbd5e1 !important;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+<body class="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden transition-colors duration-200">
+    <!-- Theme Toggle (Top Right) -->
+    <div class="absolute top-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors shadow-lg" title="Toggle Theme">
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+        </button>
+    </div>
+
     <!-- Background decoration -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-1/4 -left-32 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl"></div>
@@ -95,5 +164,8 @@
             </p>
         </div>
     </div>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

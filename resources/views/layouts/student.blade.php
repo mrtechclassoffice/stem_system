@@ -7,6 +7,28 @@
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <script>
+        // Check theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+    </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
@@ -15,9 +37,61 @@
         h1, h2, h3 {
             font-family: 'Outfit', sans-serif;
         }
+        /* Light mode overrides */
+        html:not(.dark) body {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        html:not(.dark) .bg-slate-900 {
+            background-color: #ffffff !important;
+        }
+        html:not(.dark) .bg-slate-950 {
+            background-color: #f1f5f9 !important;
+        }
+        html:not(.dark) .border-slate-800 {
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) .border-slate-800\/80 {
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) .text-white {
+            color: #0f172a !important;
+        }
+        html:not(.dark) .text-slate-100 {
+            color: #1e293b !important;
+        }
+        html:not(.dark) .text-slate-200 {
+            color: #334155 !important;
+        }
+        html:not(.dark) .text-slate-300 {
+            color: #475569 !important;
+        }
+        html:not(.dark) .text-slate-400 {
+            color: #64748b !important;
+        }
+        html:not(.dark) .hover\:bg-slate-800:hover {
+            background-color: #f1f5f9 !important;
+        }
+        html:not(.dark) .hover\:border-slate-700:hover {
+            border-color: #cbd5e1 !important;
+        }
+        html:not(.dark) header.bg-slate-900\/95 {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) aside.bg-slate-900 {
+            background-color: #ffffff !important;
+            border-color: #e2e8f0 !important;
+        }
+        html:not(.dark) .from-violet-500 {
+            --tw-gradient-from: #8b5cf6 !important;
+        }
+        html:not(.dark) .to-indigo-600 {
+            --tw-gradient-to: #4f46e5 !important;
+        }
     </style>
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-100">
+<body class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
     
     <!-- Top Nav -->
     <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur border-b border-slate-800">
@@ -59,6 +133,11 @@
                         Hi, <span class="text-white font-medium">{{ explode(' ', auth()->user()->student->full_name)[0] }}</span>
                     </span>
                 @endif
+                <!-- Theme Toggle -->
+                <button onclick="toggleTheme()" class="flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors mr-1" title="Toggle Theme">
+                    <i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i>
+                </button>
                 <form action="{{ route('logout') }}" method="POST" class="hidden md:block m-0">
                     @csrf
                     <button type="submit" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-slate-400 hover:text-red-400 hover:bg-red-400/10 transition-all duration-150">
